@@ -10,6 +10,14 @@
   	<setting name="cacheEnabled" value="false"/>
   </settings> 
   -->
+  <!-- 如果不指定日志  slf4j -> Apache Commons Logging -> Log4j2 -> log4j ->jdk logging 顺序 -->
+  <settings>
+  	<setting name="logImpl" value="LOG4J"/>
+  	<setting name="lazyLoadingEnabled" value="true"/>
+  	<setting name="aggressiveLazyLoading" value="false"/>
+  	<!-- 二级缓存 -->
+  	<setting name="cacheEnabled" value="true"/>
+  </settings> 
   <!-- 3.设置别名  单个 批量 -->
   <typeAliases>
   	<!-- <typeAlias type="com.zhong.entity.Person" alias="person" /> 不区分大小写 使用的时候 -->

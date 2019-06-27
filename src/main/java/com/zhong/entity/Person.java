@@ -1,12 +1,18 @@
 package com.zhong.entity;
 
+import java.io.Serializable;
+
 /**
  * @author zhong
  * @date 2019年6月26日 下午2:54:02
  * 
  */
-public class Person {
+public class Person implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4503204215792539349L;
 	private int id;
 	private String name;
 	private int age;
