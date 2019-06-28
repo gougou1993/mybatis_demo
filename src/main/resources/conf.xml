@@ -78,4 +78,20 @@
     <!-- 将包内的映射器接口实现全部注册为映射器 -->
     <package name="com.zhong.mapper"/>
   </mappers>
+  
+  <!-- mybatis-config.xml -->
+	<plugins>
+	  <plugin interceptor="com.zhong.plugins.ExecutorPlugin">
+	    <property name="someProperty" value="100"/>
+	  </plugin>
+	  <plugin interceptor="com.zhong.plugins.ParameterHandlerPlugin">
+	    <property name="someProperty" value="100"/>
+	  </plugin>
+	  <plugin interceptor="com.zhong.plugins.ResultSetHandlerPlugin">
+	    <property name="someProperty" value="100"/>
+	  </plugin>
+	  <plugin interceptor="com.zhong.plugins.SQLStatsInterceptor">
+	    <property name="someProperty" value="100"/>
+	  </plugin>
+	</plugins>
 </configuration>
