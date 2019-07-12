@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhong.mapper.StudentMapper"><!-- 和接口名全路径 -->
+	
+	<sql id="baseColumns">
+		id,name,sex
+	</sql>
+	<sql id="whereClause">
+		<if test="student!=null">
+			<if test="student.name !=null and student.name !=''">
+				and name like '%${student.name}%'
+			</if>
+			<if test="student.sex !=null and student.sex !=''">
+			   and sex=#{student.sex}
+			</if>
+			 <!-- 判断集合 -->
+	        <!-- collection：表示pojo中集合属性的属性名称 -->
+	        <!-- item：为遍历出的结果声明一个变量名称 -->
+	        <!-- open：遍历开始时，需要拼接的字符串 -->
+	        <!-- close：遍历结束时，需要拼接的字符串 -->
+	        <!-- separator：遍历中间需要拼接的字符串 -->
+			<if test="idList!=null">
+				and id in 
+				<foreach collection="idList" item="id" open="(" colse=")" separator=",">
+					#{id}
+				</foreach>
+			</if>
+		</if>
+	</sql>
+	
+	<select id="selectStudentById" resultType="student" parameterType="int" >
+		select id,name,sex where id = #{id}
+	</select>
+	
+	<select id="selectStudentsByName" resultType="student" parameterType="student">
+		select <include id="baseColumns" /> from student 
+		<where>
+			<include refid="whereClause"></include>
+		</where>
+	</select>
+	
+	<!--  -->
+	<select id="selectStudents" resultType="student" parameterType="student">
+		select id,name,sex from student
+		<where>
+			<include refid="whereClause"></include>
+		</where>
+	</select>
+	<!--  -->
+	<select id="selectCount" parameterType="student" resultType="int">
+        select count(*) from student
+        <where>
+            <include refid="whereClause"></include>
+        </where>
+    </select>
+	
+		
+</mapper>

@@ -10,9 +10,12 @@ import com.zhong.entity.Person;
  * 
  */
 public interface PersonMapper {
+	
 	Person selectPerson(int id);
 	Person selectPersonWithConverter(int id);
+	
 	List<Person> queryAll();
+	
 	void addPerson(Person person);
 	void addPersonWithConverter(Person person);
 	void deleteById(int id);
